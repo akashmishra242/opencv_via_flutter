@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 
+import 'select_or_capture_image_to_show_depth_map.dart';
+
 class ShowDepthMap extends StatefulWidget {
   final String url;
 
@@ -51,6 +53,18 @@ class _ShowDepthMapState extends State<ShowDepthMap> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Depth Map'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.navigate_next_sharp),
+            onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const DepthMapScreen(
+                      url:
+                          'https://opencv-depth-map-api.onrender.com/depth-map'),
+                )),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
