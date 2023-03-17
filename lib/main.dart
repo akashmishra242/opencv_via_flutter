@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:opencv_via_flutter/depth_map.dart';
 
 import 'home_screen.dart';
 
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: ShowDepthMap(
+          url: 'https://opencv-depth-map-api.onrender.com/depth-map'),
     );
   }
 }
