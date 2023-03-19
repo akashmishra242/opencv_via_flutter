@@ -54,6 +54,11 @@ class _ShowDepthMapState extends State<ShowDepthMap> {
       appBar: AppBar(
         title: const Text('Depth Map'),
         actions: [
+          const Center(
+              child: Text(
+            'Go to custom depth map screen',
+            textScaleFactor: 0.8,
+          )),
           IconButton(
             icon: const Icon(Icons.navigate_next_sharp),
             onPressed: () => Navigator.push(
