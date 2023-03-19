@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 class DepthMapScreen extends StatefulWidget {
   final String url;
 
-  const DepthMapScreen({super.key, required this.url});
+  const DepthMapScreen({Key? key, required this.url}) : super(key: key);
 
   @override
   _DepthMapScreenState createState() => _DepthMapScreenState();
@@ -20,6 +20,8 @@ class _DepthMapScreenState extends State<DepthMapScreen> {
   File? _secondImage;
   Uint8List? _depthMap;
   bool _isLoading = false;
+  int _numDisparities = 16;
+  int _blockSize = 15;
 
   Future<void> _getImage(ImageSource source, int imageIndex) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
@@ -44,6 +46,9 @@ class _DepthMapScreenState extends State<DepthMapScreen> {
 
     final firstImageData = await _firstImage!.readAsBytes();
     final secondImageData = await _secondImage!.readAsBytes();
+
+    request.fields['numDisparities'] = _numDisparities.toString();
+    request.fields['blockSize'] = _blockSize.toString();
 
     request.files.add(http.MultipartFile.fromBytes('image1', firstImageData,
         filename: 'first_image.jpg'));
@@ -108,7 +113,7 @@ class _DepthMapScreenState extends State<DepthMapScreen> {
                           ),
                     ElevatedButton(
                       onPressed: () => _getImage(ImageSource.gallery, 2),
-                      child: const Text('Select from gallery '),
+                      child: const Text('Select from gallery'),
                     ),
                     ElevatedButton(
                       onPressed: () => _getImage(ImageSource.camera, 2),
@@ -118,23 +123,54 @@ class _DepthMapScreenState extends State<DepthMapScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed:
-                  _firstImage != null && _secondImage != null ? _callApi : null,
-              child: const Text('Generate Depth Map'),
+            const SizedBox(height: 16),
+            Text(
+              'Num Disparities: $_numDisparities',
+              style: const TextStyle(fontSize: 16),
             ),
-            const SizedBox(height: 20),
-            _isLoading
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : _depthMap != null
-                    ? Image.memory(
-                        _depthMap!,
-                        width: MediaQuery.of(context).size.width * 0.75,
-                      )
-                    : const SizedBox(),
+            Slider(
+              value: _numDisparities.toDouble(),
+              min: 16,
+              max: 256,
+              divisions: 15,
+              onChanged: (double value) {
+                setState(() {
+                  _numDisparities = value.toInt();
+                });
+              },
+            ),
+            Text(
+              'Block Size: $_blockSize',
+              style: const TextStyle(fontSize: 16),
+            ),
+            Slider(
+              value: _blockSize.toDouble(),
+              min: 5,
+              max: 255,
+              divisions: 125,
+              onChanged: (double value) {
+                setState(() {
+                  _blockSize = value.toInt();
+                });
+              },
+            ),
+            ElevatedButton(
+              onPressed: _firstImage != null && _secondImage != null
+                  ? _isLoading
+                      ? null
+                      : _callApi
+                  : null,
+              child: _isLoading
+                  ? const CircularProgressIndicator()
+                  : const Text('Generate Depth Map'),
+            ),
+            if (_depthMap != null) ...[
+              const SizedBox(height: 16),
+              Image.memory(
+                _depthMap!,
+                width: MediaQuery.of(context).size.width * 0.8,
+              ),
+            ]
           ],
         ),
       ),
