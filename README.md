@@ -1,6 +1,15 @@
 # opencv_via_flutter
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/akashmishra242/opencv_via_flutter?style=plastic)
+![GitHub repo size](https://img.shields.io/github/repo-size/akashmishra242/opencv_via_flutter?color=important&style=plastic) 
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/akashmishra242/opencv_via_flutter?color=cyan&style=plastic) 
+![GitHub language count](https://img.shields.io/github/languages/count/akashmishra242/opencv_via_flutter?color=ff69b4&style=plastic) 
+![GitHub top language](https://img.shields.io/github/languages/top/akashmishra242/opencv_via_flutter?color=red&style=plastic) 
+![total opem issues](https://img.shields.io/github/issues/akashmishra242/opencv_via_flutter?style=plastic)
+![GitHub forks](https://img.shields.io/github/forks/akashmishra242/opencv_via_flutter?style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/akashmishra242/opencv_via_flutter?style=social)
 
-In this project implementation of Computer Vision (stereo depth calculation) has been done using OpenCV package. This project has been integrated in a mobile app using flutter.
+***In this project implementation of stereo depth map calculation has been done using OpenCV package. This project has been integrated in a mobile app using flutter.***
+
 ---
 # 📸 ScreenShots
 
@@ -10,6 +19,17 @@ In this project implementation of Computer Vision (stereo depth calculation) has
 ![rhAgFhPuKLKr7d-ywgnZbQAg9KfWRan2l3b99d3Xj34=_plaintext_638169743041293715](https://user-images.githubusercontent.com/91900783/231716359-ff04cecf-1b03-4d1f-9f0a-2ed99d18e3f9.jpg)
 ![6l5Ji3shtXRuDy5j7QfCWfpsy8UTZJ-tD86glm1ADP8=_plaintext_638169743041453705](https://user-images.githubusercontent.com/91900783/231716374-466ebd74-ad8f-4031-b857-5524e134e521.jpg)
 
+---
+# 📚 References
+https://www.coursera.org/learn/3d-reconstruction-multiple-viewpoints
+
+https://docs.opencv.org/3.4/dd/d53/tutorial_py_depthmap.html
+
+https://www.geeksforgeeks.org/python-opencv-depth-map-from-stereo-images/
+
+https://www.youtube.com/watch?v=jhOTm3MZDaY
+
+https://arxiv.org/pdf/1902.03471
 
  # 🌐 Connect with me 
 **Give your feedback at akashmishra242@gmail.com**
